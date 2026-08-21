@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ArrowRight, CheckCircle2, Eye, EyeOff, MailCheck } from 'lucide-react';
 import { api } from './api';
 
-type AuthProps = { kind: 'login' | 'register'; go: (page: any) => void };
+type AuthProps = { kind: 'login' | 'register'; go: (page: any) => void; onAuthenticated?: () => void };
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const mobilePattern = /^\+?[0-9][0-9\s()-]{7,20}$/;
 const checks = [['8+ characters', /.{8,}/], ['Uppercase letter', /[A-Z]/], ['Lowercase letter', /[a-z]/], ['Number', /[0-9]/], ['Special character', /[^A-Za-z0-9]/]] as const;
@@ -11,7 +11,7 @@ function Input({ label, error, ...props }: React.InputHTMLAttributes<HTMLInputEl
   return <label className="field"><span>{label}</span><input {...props} aria-invalid={Boolean(error)}/>{error && <small className="field-error">{error}</small>}</label>;
 }
 
-export default function AuthApi({ kind, go }: AuthProps) {
+export default function AuthApi({ kind, go, onAuthenticated }: AuthProps) {
   const [show, setShow] = useState(false);
   const [step, setStep] = useState<'form'|'verify'|'forgot'|'reset'>('form');
   const [password, setPassword] = useState('');
@@ -42,6 +42,7 @@ export default function AuthApi({ kind, go }: AuthProps) {
         setEmail(submittedEmail); setStep('verify');
       } else {
         await api('/api/auth/login', { method: 'POST', body: JSON.stringify({ email: submittedEmail, password }) });
+        onAuthenticated?.();
         go('profile');
       }
     } catch (error) { setMessage(error instanceof Error ? error.message : 'Something went wrong'); }
