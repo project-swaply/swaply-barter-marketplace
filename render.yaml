@@ -3,8 +3,7 @@ services:
     name: swaply-api
     runtime: node
     plan: free
-    buildCommand: pnpm install --frozen-lockfile && pnpm server:build
-    preDeployCommand: pnpm db:migrate
+    buildCommand: pnpm install --frozen-lockfile && pnpm db:migrate && pnpm server:build
     startCommand: pnpm server:start
     healthCheckPath: /api/health
     envVars:
