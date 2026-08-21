@@ -14,7 +14,7 @@ services:
           name: swaply-db
           property: connectionString
       - key: FRONTEND_URL
-        value: https://swaply-barter-marketplace.vinaykumarpuduri10.chatgpt.site
+        value: https://swaply-barter-marketplace.vercel.app
 databases:
   - name: swaply-db
     plan: free
