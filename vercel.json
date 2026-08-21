@@ -1,0 +1,1 @@
+{"buildCommand":"pnpm build:frontend","outputDirectory":"dist-vercel","framework":"vite","rewrites":[{"source":"/(.*)","destination":"/index.html"}]}

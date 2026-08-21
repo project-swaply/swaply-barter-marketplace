@@ -1,8 +1,13 @@
 node_modules/
 .pnpm-store/
 dist/
+dist-vercel/
+server-dist/
+.wrangler/
+.openai/*.tar.gz
 *.tsbuildinfo
 vite.config.js
 vite.config.d.ts
 swaply-*.png
 .env*
+!.env.example
