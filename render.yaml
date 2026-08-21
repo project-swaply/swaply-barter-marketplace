@@ -14,11 +14,7 @@ services:
           name: swaply-db
           property: connectionString
       - key: FRONTEND_URL
-        sync: false
-      - key: RESEND_API_KEY
-        sync: false
-      - key: EMAIL_FROM
-        sync: false
+        value: https://swaply-barter-marketplace.vinaykumarpuduri10.chatgpt.site
 databases:
   - name: swaply-db
     plan: free
